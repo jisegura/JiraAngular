@@ -1,0 +1,10 @@
+.loader-main {
+  height: 100vh;
+  text-align: center;
+  width: 100%;
+
+  .spinner {
+    display: inline-block;
+    margin-top: calc(50vh - 50px);
+  }
+}
