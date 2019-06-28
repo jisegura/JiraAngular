@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DevService } from '@app/service/data/dev.service';
 
 @Component({
   selector: 'app-jira-developer',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JiraDeveloperComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private devService: DevService
+  ) { }
 
   ngOnInit() {
+    this.devService.loadDataDev();
   }
 
 }
