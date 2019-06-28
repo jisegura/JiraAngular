@@ -30,10 +30,9 @@ export class CheckUserService {
 
   private getCheckUser(): Observable<any>{
     return this.http.get<any>(checkUrl).pipe(
-       catchError(err => {
-         console.error(err.message);
-         return throwError("Error thrown from catchError");
-       }
-    ));
+      catchError(err => {
+        return throwError("Error thrown from catchError");
+      })
+    );
   }
 }
