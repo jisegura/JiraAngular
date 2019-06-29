@@ -4,7 +4,7 @@ import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Sm } from '@app/model/sm.model';
 
-const smUrl: string = "user/mensaje";
+const smUrl: string = "agent/assign-issues";
 
 @Injectable({
   providedIn: 'root'

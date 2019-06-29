@@ -4,8 +4,8 @@ import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Issue } from '@app/model/issue.model';
 
-const devUrl: string = "user/dev";
-const testUrl: string = "getuser";
+const devUrl: string = "agent/show-issues";
+const testUrl: string = "agent/evaluate"; // mandar issue
 
 @Injectable({
   providedIn: 'root'

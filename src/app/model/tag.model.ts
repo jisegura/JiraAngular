@@ -1,10 +1,8 @@
 export class Tag {
-  idTag: number;
   nombre: string;
 
 
-  constructor(idTag: number, nombre: string) {
-    this.idTag = idTag;
+  constructor(nombre: string) {
     this.nombre = nombre;
   }
 }
