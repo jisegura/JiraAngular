@@ -4,7 +4,7 @@ import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Sm } from '@app/model/sm.model';
 
-const smUrl: string = "usuario/scrum";
+const smUrl: string = "user/mensaje";
 
 @Injectable({
   providedIn: 'root'
@@ -29,11 +29,17 @@ export class SmService {
     let obs = <BehaviorSubject<any>> new BehaviorSubject(null);
 
     this.getDataSm().subscribe(smDatos => {
+      console.log('en curso: ');
+      console.log(smDatos);
       this.dataStore.smDatos = smDatos;
       this._smDatos.next(Object.assign({}, this.dataStore).smDatos);
     }, error => {
+      console.log('error: ');
+      console.log(this.dataStore.smDatos);
       obs.error(error);
     }, () => {
+      console.log('finalizo: ');
+      console.log(this.dataStore.smDatos);
       obs.complete();
     });
 

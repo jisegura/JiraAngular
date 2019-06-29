@@ -16,4 +16,8 @@ export class JiraDeveloperComponent implements OnInit {
     this.devService.loadDataDev();
   }
 
+  funcTest() {
+    this.devService.clickDataDev();
+  }
+
 }

@@ -30,7 +30,6 @@ export class Issue {
     this.tags = tags;
     this.nombreIssue = nombreIssue;
     this.dificultad = dificultad;
-    this.storyPoints = storyPoints;
     this.diasEstimados = diasEstimados;
     this.prioridad = prioridad;
   }
