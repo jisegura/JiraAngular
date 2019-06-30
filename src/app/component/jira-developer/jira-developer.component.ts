@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { DevService } from '@app/service/data/dev.service';
+import { Issue } from '@app/model/issue.model';
 
 @Component({
   selector: 'app-jira-developer',
@@ -8,16 +10,52 @@ import { DevService } from '@app/service/data/dev.service';
 })
 export class JiraDeveloperComponent implements OnInit {
 
+  ngModelHash: Map<number,number>;
+  devDatos: Observable<Issue[]>;
+
   constructor(
     private devService: DevService
   ) { }
 
   ngOnInit() {
+    this.ngModelHash = new Map();
+
+    this.devDatos = this.devService.devDatos;
+
+    this.devDatos.subscribe(datos => datos.forEach(dato => this.ngModelHash.set(dato.id, null)));
     this.devService.loadDataDev();
+
+    this.ngModelHash.set(123, null);
   }
 
-  funcTest() {
-    this.devService.clickDataDev();
+  getNota(issue: Issue): string {
+    return "Se estimo un tiempo de " +
+           issue.diasEstimados +
+           ", y se tardo " +
+           "<span>fechaFin - fechaIni" +
+           " dias en completar esta Tarea."
+  }
+
+  updateHasMap(id: number, value: number): void {
+    if (value < 1) {
+      this.ngModelHash.set(id, 1);
+    } else if (value > 10) {
+      this.ngModelHash.set(id, 10);
+    } else {
+      this.ngModelHash.set(id, value);
+    }
+  }
+
+  sendEvaluation(id: number): void {
+    console.log(id, this.ngModelHash.get(id));
+    const issue: Issue = {
+      id: id,
+      dificultad: this.ngModelHash.get(id)
+    } as Issue;
+
+    this.devService.updateDataDev(issue);
+
+    console.log(issue);
   }
 
 }

@@ -4,8 +4,14 @@ import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Issue } from '@app/model/issue.model';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+}
+
 const devUrl: string = "agent/show-issues";
-const testUrl: string = "agent/evaluate"; // mandar issue
+const devPutUrl: string = "agent/evaluate"; // mandar issue
 
 @Injectable({
   providedIn: 'root'
@@ -42,11 +48,15 @@ export class DevService {
     return obs.asObservable();
   }
 
-  public clickDataDev(): Observable<any>{
+  public updateDataDev(issue: Issue): Observable<any>{
     let obs = <BehaviorSubject<any>> new BehaviorSubject(null);
 
-    this.getDataTEST().subscribe(devDatos => {
-      this.dataStore.devDatos = devDatos;
+    this.putDataDev(issue).subscribe(issue => {
+      this.dataStore.devDatos.forEach((item, index) => {
+        if (item.id === issue.id) {
+          this.dataStore.devDatos.splice(index, 1);
+        }
+      });
       this._devDatos.next(Object.assign({}, this.dataStore).devDatos);
     }, error => {
       obs.error(error);
@@ -60,15 +70,15 @@ export class DevService {
   private getDataDev(): Observable<Issue[]>{
     return this.http.get<Issue[]>(devUrl).pipe(
       catchError(err => {
-        return throwError("Error thrown from catchError");
+        return throwError("Error thrown from catchError: ", err);
       })
     );
   }
 
-  private getDataTEST(): Observable<Issue[]>{
-    return this.http.get<Issue[]>(testUrl).pipe(
+  private putDataDev(issue: Issue): Observable<Issue>{
+    return this.http.put<Issue>(devPutUrl, issue, httpOptions).pipe(
       catchError(err => {
-        return throwError("Error thrown from catchError");
+        return throwError("Error thrown from catchError: ", err);
       })
     );
   }
