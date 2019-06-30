@@ -67,6 +67,25 @@ export class DevService {
     return obs.asObservable();
   }
 
+  public updateDataDevById(id: number, evaluation: number): Observable<any>{
+    let obs = <BehaviorSubject<any>> new BehaviorSubject(null);
+
+    this.putDataDevByID(id, evaluation).subscribe(issue => {
+      this.dataStore.devDatos.forEach((item, index) => {
+        if (item.id === issue.id) {
+          this.dataStore.devDatos.splice(index, 1);
+        }
+      });
+      this._devDatos.next(Object.assign({}, this.dataStore).devDatos);
+    }, error => {
+      obs.error(error);
+    }, () => {
+      obs.complete();
+    });
+
+    return obs.asObservable();
+  }
+
   private getDataDev(): Observable<Issue[]>{
     return this.http.get<Issue[]>(devUrl).pipe(
       catchError(err => {
@@ -77,6 +96,15 @@ export class DevService {
 
   private putDataDev(issue: Issue): Observable<Issue>{
     return this.http.put<Issue>(devPutUrl, issue, httpOptions).pipe(
+      catchError(err => {
+        return throwError("Error thrown from catchError: ", err);
+      })
+    );
+  }
+
+  private putDataDevByID(id: number, evaluation: number): Observable<Issue>{
+    const url: string = devPutUrl + "/" + id + "/" + evaluation;
+    return this.http.put<Issue>(url, {}, httpOptions).pipe(
       catchError(err => {
         return throwError("Error thrown from catchError: ", err);
       })
