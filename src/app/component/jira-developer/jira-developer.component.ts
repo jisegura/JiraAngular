@@ -58,7 +58,7 @@ export class JiraDeveloperComponent implements OnInit {
       dificultad: this.ngModelHash.get(id)
     } as Issue;
 
-    this.devService.updateDataDev(issue);
+    //this.devService.updateDataDev(issue);
     this.devService.updateDataDevById(id, this.ngModelHash.get(id));
 
     console.log(issue);

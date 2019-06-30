@@ -104,7 +104,7 @@ export class DevService {
 
   private putDataDevByID(id: number, evaluation: number): Observable<Issue>{
     const url: string = devPutUrl + "/" + id + "/" + evaluation;
-    return this.http.put<Issue>(url, {}, httpOptions).pipe(
+    return this.http.get<Issue>(url).pipe(
       catchError(err => {
         return throwError("Error thrown from catchError: ", err);
       })
