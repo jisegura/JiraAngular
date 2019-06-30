@@ -5,10 +5,10 @@
   </div>
 </ng-container>
 <ng-container>
-  <ng-container *ngIf="true">
+  <ng-container *ngIf="!iAmScrumMaster()">
     <app-jira-developer></app-jira-developer>
   </ng-container>
-  <ng-container *ngIf="false">
+  <ng-container *ngIf="iAmScrumMaster()">
     <app-jira-scrummaster></app-jira-scrummaster>
   </ng-container>
 </ng-container>

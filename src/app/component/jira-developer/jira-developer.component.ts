@@ -32,7 +32,7 @@ export class JiraDeveloperComponent implements OnInit {
     return "Se estimo un tiempo de " +
            issue.diasEstimados +
            ", y se tardo " +
-           this.getDiferenceInDays(issue.fechaIni, issue.fechaFin) +
+           //this.getDiferenceInDays(issue.fechaIni, issue.fechaFin) +
            " dias en completar esta Tarea."
   }
 
@@ -41,6 +41,7 @@ export class JiraDeveloperComponent implements OnInit {
   }
 
   updateHasMap(id: number, value: number): void {
+    console.log(id, value);
     if (value < 1) {
       this.ngModelHash.set(id, 1);
     } else if (value > 10) {

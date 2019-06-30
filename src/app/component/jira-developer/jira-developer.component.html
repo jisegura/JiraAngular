@@ -100,11 +100,6 @@
                     {{ devDato.prioridad }}
                   </mat-chip>
                 </div>
-                <mat-divider></mat-divider>
-                <div class="col-sm-12">
-                  <h6>Notas:</h6>
-                  <p>{{ getNota(devDato) }}</p>
-                </div>
               </div>
 
               <div class="col-sm-3">
@@ -112,15 +107,15 @@
                   <h6>Auto-Evaluación</h6>
                   <p>Contanos como te sentiste con esta Tarea con un valor de 1 a 10, siendo 1 la peor calificación y 10 la mejor calificación</p>
                 </div>
-                <div class="col-sm-12">
+                <div class="col-sm-12 text-center">
                   <mat-form-field class="puntaje" appearance="outline">
                     <mat-label>Puntaje</mat-label>
                     <input matInput type="number" [ngModel]="ngModelHash.get(devDato.id)" (ngModelChange)="updateHasMap(devDato.id, $event)">
                   </mat-form-field>
                 </div>
                 <div class="col-sm-12">
-                <button class="float-right" mat-flat-button color="primary" [disabled]="ngModelHash.get(123) === null" (click)="sendEvaluation(devDato.id)">Enviar</button>
-              </div>
+                  <button class="float-right" mat-flat-button color="primary" [disabled]="ngModelHash.get(devDato.id) === null" (click)="sendEvaluation(devDato.id)">Enviar</button>
+                </div>
               </div>
             </div>
           </mat-card-content>
