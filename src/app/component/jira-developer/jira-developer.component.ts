@@ -59,6 +59,7 @@ export class JiraDeveloperComponent implements OnInit {
     } as Issue;
 
     this.devService.updateDataDev(issue);
+    this.devService.updateDataDevById(id, this.ngModelHash.get(id));
 
     console.log(issue);
   }
