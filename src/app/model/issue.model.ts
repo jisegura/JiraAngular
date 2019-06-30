@@ -2,8 +2,8 @@ import { Tag } from '@app/model/tag.model';
 
 export class Issue {
   id: number;
-  fechaIni: string;
-  fechaFin: string;
+  fechaIni: Date;
+  fechaFin: Date;
   tags: Tag[];
   nombreIssue: string;
   dificultad: number;
@@ -13,8 +13,8 @@ export class Issue {
 
 
   constructor(id: number,
-              fechaIni: string,
-              fechaFin: string,
+              fechaIni: Date,
+              fechaFin: Date,
               tags: Tag[],
               nombreIssue: string,
               dificultad: number,

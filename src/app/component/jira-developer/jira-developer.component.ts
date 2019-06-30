@@ -32,8 +32,12 @@ export class JiraDeveloperComponent implements OnInit {
     return "Se estimo un tiempo de " +
            issue.diasEstimados +
            ", y se tardo " +
-           "<span>fechaFin - fechaIni" +
+           this.getDiferenceInDays(issue.fechaIni, issue.fechaFin) +
            " dias en completar esta Tarea."
+  }
+
+  getDiferenceInDays(dateIni: Date, dateFin: Date): number{
+    return Math.abs(dateFin.getTime() - dateIni.getTime()) / (1000 * 60 * 60 * 24) ;
   }
 
   updateHasMap(id: number, value: number): void {
