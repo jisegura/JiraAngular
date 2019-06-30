@@ -18,57 +18,6 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-sm-12 container-card">
-      <mat-card>
-        <mat-card-content>
-          <div class="row">
-            <div class="col-sm-3">
-              <mat-toolbar color="primary">
-                <mat-toolbar-row>
-                  <span>Nombre Issue</span>
-                </mat-toolbar-row>
-              </mat-toolbar>
-            </div>
-            <div class="col-sm-6">
-              <div class="col-sm-12">
-                <h6>Etiquetas:</h6>
-                <mat-chip-list>
-                  <mat-chip color="primary" selected [disableRipple]="true">tag 1</mat-chip>
-                  <mat-chip color="primary" selected [disableRipple]="true">tag 2</mat-chip>
-                  <mat-chip color="primary" selected [disableRipple]="true">tag 3</mat-chip>
-                </mat-chip-list>
-              </div>
-              <mat-divider></mat-divider>
-              <div class="col-sm-12">
-                <h6>Prioridad:</h6>
-                <mat-chip color="warn" selected [disableRipple]="true">prioridad</mat-chip>
-              </div>
-              <mat-divider></mat-divider>
-              <div class="col-sm-12">
-                <h6>Notas:</h6>
-                <p>Se estimo un tiempo de <span>[diasEstimados]</span>, y se tardo <span>fechaFin - fechaIni</span> dias en completar esta Tarea.</p>
-              </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="col-sm-12">
-                <h6>Auto-Evaluación</h6>
-                <p>Contanos como te sentiste con esta Tarea con un valor de 1 a 10, siendo 1 la peor calificación y 10 la mejor calificación</p>
-              </div>
-              <div class="col-sm-12 text-center">
-                <mat-form-field class="puntaje" appearance="outline">
-                  <mat-label>Puntaje</mat-label>
-                  <input matInput type="number" [ngModel]="ngModelHash.get(123)" (ngModelChange)="updateHasMap(123, $event)">
-                </mat-form-field>
-              </div>
-              <div class="col-sm-12">
-                <button class="float-right" mat-flat-button color="primary" [disabled]="ngModelHash.get(123) === null" (click)="sendEvaluation(123)">Enviar</button>
-              </div>
-            </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
-
     <ng-container *ngFor="let devDato of devDatos | async">
       <div class="col-sm-12 container-card">
         <mat-card>

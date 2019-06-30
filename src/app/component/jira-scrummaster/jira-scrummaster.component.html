@@ -18,34 +18,6 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-sm-6 container-card">
-      <mat-card>
-        <mat-chip class="float-right" color="warn" selected [disableRipple]="true">prioridad</mat-chip>
-        <mat-card-header>
-          <mat-card-title>
-            Nombre Issue
-          </mat-card-title>
-          <mat-card-subtitle>
-            <mat-chip-list>
-              <mat-chip color="primary" selected [disableRipple]="true">tag 1</mat-chip>
-              <mat-chip color="primary" selected [disableRipple]="true">tag 2</mat-chip>
-              <mat-chip color="primary" selected [disableRipple]="true">tag 3</mat-chip>
-            </mat-chip-list>
-          </mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <h6>Developer Recomendado: </h6>
-          <mat-toolbar color="primary">
-            <mat-toolbar-row>
-              <span>Nombre Apellido</span>
-              <span class="fill-space"></span>
-              <mat-chip color="accent" selected [disableRipple]="true">rol</mat-chip>
-            </mat-toolbar-row>
-          </mat-toolbar>
-        </mat-card-content>
-      </mat-card>
-    </div>
-
     <ng-container *ngFor="let smDato of smDatos | async">
       <div class="col-sm-6 container-card">
         <mat-card>
