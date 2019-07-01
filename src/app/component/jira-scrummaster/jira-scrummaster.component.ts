@@ -23,7 +23,7 @@ export class JiraScrummasterComponent implements OnInit {
   }
 
   getNameLastname(user: Usuario): string {
-    return user.name + " " + user.lastName;
+    return user.name;
   }
 
 }
